@@ -22,6 +22,16 @@ Public Class Form1
         End Set
     End Property
 
+    Private _TextoAdicional As String
+    Public Property TextoAdicional() As String
+        Get
+            Return _TextoAdicional
+        End Get
+        Set(ByVal value As String)
+            _TextoAdicional = value
+        End Set
+    End Property
+
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         ORDER_DATATableAdapter1.Fill(Me.VendasDataSet1.ORDER_DATA)
@@ -52,11 +62,16 @@ Public Class Form1
         ReportViewer1.LocalReport.DataSources.Add(rdsOrderData)
         ReportViewer1.LocalReport.DataSources.Add(rdsLineItem)
 
-        ReportViewer1.LocalReport.SetParameters(New ReportParameter("MostrarDetalhe", VerDetalhe))
+        Dim reportParameters = New List(Of ReportParameter)
+
+        reportParameters.Add(New ReportParameter("MostrarDetalhe", VerDetalhe))
+        reportParameters.Add(New ReportParameter("TextoAdicional", TextoAdicional))
+
+        ReportViewer1.LocalReport.SetParameters(reportParameters)
 
         AddHandler ReportViewer1.LocalReport.SubreportProcessing, AddressOf ProcessarSubReport
 
-        Me.ReportViewer1.RefreshReport()
+        ReportViewer1.RefreshReport()
         Application.DoEvents()
         ReportViewer1.Visible = True
     End Sub
@@ -73,14 +88,10 @@ Public Class Form1
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        NumeroEncomenda = ComboBox1.SelectedValue
+        VerDetalhe = CheckBox1.Checked
+        TextoAdicional = TextBox1.Text
         AtualizarRelatorio()
     End Sub
 
-    Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox1.SelectedIndexChanged
-        NumeroEncomenda = DirectCast(sender, ComboBox).SelectedValue
-    End Sub
-
-    Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox1.CheckedChanged
-        VerDetalhe = DirectCast(sender, CheckBox).Checked
-    End Sub
 End Class

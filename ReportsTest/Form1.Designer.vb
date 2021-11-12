@@ -30,6 +30,8 @@ Partial Class Form1
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.CheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.Label2 = New System.Windows.Forms.Label()
         CType(Me.VendasDataSet1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -37,10 +39,10 @@ Partial Class Form1
         '
         Me.ReportViewer1.LocalReport.DisplayName = "Report de teste"
         Me.ReportViewer1.LocalReport.ReportEmbeddedResource = "ReportsTest.ReportTeste.rdlc"
-        Me.ReportViewer1.Location = New System.Drawing.Point(12, 193)
+        Me.ReportViewer1.Location = New System.Drawing.Point(224, 6)
         Me.ReportViewer1.Name = "ReportViewer1"
         Me.ReportViewer1.ServerReport.BearerToken = Nothing
-        Me.ReportViewer1.Size = New System.Drawing.Size(919, 380)
+        Me.ReportViewer1.Size = New System.Drawing.Size(707, 567)
         Me.ReportViewer1.TabIndex = 0
         '
         'ORDER_DATATableAdapter1
@@ -78,11 +80,11 @@ Partial Class Form1
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(224, 4)
+        Me.Button1.Location = New System.Drawing.Point(143, 84)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(75, 23)
         Me.Button1.TabIndex = 3
-        Me.Button1.Text = "Ver"
+        Me.Button1.Text = "Aplicar"
         Me.Button1.UseVisualStyleBackColor = True
         '
         'CheckBox1
@@ -97,11 +99,29 @@ Partial Class Form1
         Me.CheckBox1.Text = "Ver detalhe"
         Me.CheckBox1.UseVisualStyleBackColor = True
         '
+        'TextBox1
+        '
+        Me.TextBox1.Location = New System.Drawing.Point(97, 58)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(121, 20)
+        Me.TextBox1.TabIndex = 5
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(12, 61)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(79, 13)
+        Me.Label2.TabIndex = 6
+        Me.Label2.Text = "Texto adicional"
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(943, 585)
+        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.TextBox1)
         Me.Controls.Add(Me.CheckBox1)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Label1)
@@ -123,4 +143,6 @@ Partial Class Form1
     Friend WithEvents Label1 As Label
     Friend WithEvents Button1 As Button
     Friend WithEvents CheckBox1 As CheckBox
+    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents Label2 As Label
 End Class

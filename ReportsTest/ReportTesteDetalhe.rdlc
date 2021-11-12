@@ -290,8 +290,6 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DetalheEncomenda</DataSetName>
-        <Top>0.81703cm</Top>
-        <Left>0.79057cm</Left>
         <Height>1.2cm</Height>
         <Width>10cm</Width>
         <Style>
@@ -301,10 +299,10 @@
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>1.27083in</Height>
+    <Height>0.47244in</Height>
     <Style />
   </Body>
-  <Width>5.86458in</Width>
+  <Width>3.93701in</Width>
   <Page>
     <PageHeight>29.7cm</PageHeight>
     <PageWidth>21cm</PageWidth>
