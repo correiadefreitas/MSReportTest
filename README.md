@@ -1,2 +1,2 @@
-# WinFormsMSReportTest
- WinForms MS Reports Test
+# MSReportTest
+ WinForms and WebForms MS Reports Test
