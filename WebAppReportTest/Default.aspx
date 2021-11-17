@@ -18,7 +18,7 @@
                 </tr>
                 <tr>
                     <td>Texto adicional</td>
-                    <td><asp:TextBox ID="TextBox1" runat="server"></asp:TextBox></td>
+                    <td><asp:TextBox ID="TextBox1" runat="server" style="width:100%;"></asp:TextBox></td>
                 </tr>
                 <tr>
                     <td colspan="2"><asp:Button ID="Button1" runat="server" Text="Aplicar" /></td>
