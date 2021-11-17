@@ -1,43 +1,45 @@
-﻿Imports Microsoft.Reporting.WinForms
+﻿Imports System.Data.SqlClient
+Imports Microsoft.Reporting.WebForms
 
-Public Class Form1
+Public Class _Default
+    Inherits Page
 
-    Private _NumeroEncomenda As Integer = 1
-    Public Property NumeroEncomenda() As Integer
-        Get
-            Return _NumeroEncomenda
-        End Get
-        Set(ByVal value As Integer)
-            _NumeroEncomenda = value
-        End Set
-    End Property
+    Public Property ORDER_DATATableAdapter1 As VendasDataSetTableAdapters.ORDER_DATATableAdapter
+    Public Property LINEITEMTableAdapter1 As VendasDataSetTableAdapters.LINEITEMTableAdapter
 
-    Private _VerDetalhe As Boolean
+    Public Property NumeroEncomenda() As Integer = 1
     Public Property VerDetalhe() As Boolean
-        Get
-            Return _VerDetalhe
-        End Get
-        Set(ByVal value As Boolean)
-            _VerDetalhe = value
-        End Set
-    End Property
-
-    Private _TextoAdicional As String
     Public Property TextoAdicional() As String
-        Get
-            Return _TextoAdicional
-        End Get
-        Set(ByVal value As String)
-            _TextoAdicional = value
-        End Set
-    End Property
 
-    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Protected Sub Page_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
 
-        ORDER_DATATableAdapter1.Fill(Me.VendasDataSet1.ORDER_DATA)
+        Dim VendasDataSet1 = New VendasDataSet()
+        ORDER_DATATableAdapter1 = New VendasDataSetTableAdapters.ORDER_DATATableAdapter()
+        LINEITEMTableAdapter1 = New VendasDataSetTableAdapters.LINEITEMTableAdapter()
+
+        ORDER_DATATableAdapter1.Fill(VendasDataSet1.ORDER_DATA)
+        LINEITEMTableAdapter1.Fill(VendasDataSet1.LINEITEM)
+
+        If Not IsPostBack Then
+            'ReportViewer1.ProcessingMode = ProcessingMode.Local
+            'ReportViewer1.LocalReport.ReportPath = Server.MapPath("~/Report.rdlc")
+
+
+
+            ComboBox1.DataSource = VendasDataSet1
+            ComboBox1.DataMember = "ORDER_DATA"
+            ComboBox1.DataTextField = "ORDERID"
+            ComboBox1.DataValueField = "ORDERID"
+            ComboBox1.DataBind()
+
+            AtualizarRelatorio()
+
+        End If
+
+
         'LINEITEMTableAdapter1.Fill(Me.VendasDataSet1.LINEITEM)
 
-        AtualizarRelatorio()
+
     End Sub
 
     Private Sub AtualizarRelatorio()
@@ -45,9 +47,8 @@ Public Class Form1
         ReportViewer1.Visible = False
         ReportViewer1.LocalReport.DataSources.Clear()
 
-        Console.WriteLine(DirectCast(ComboBox1.SelectedValue, Integer))
-        Console.WriteLine(Me.ORDER_DATATableAdapter1.GetData().Rows.Count())
-
+        Debug.Print(ComboBox1.SelectedValue)
+        Debug.Print(ORDER_DATATableAdapter1.GetData().Rows.Count())
 
         Dim dtOrderData As DataTable = Me.ORDER_DATATableAdapter1.GetData().Where(Function(x) x.ORDERID = NumeroEncomenda).CopyToDataTable()
         dtOrderData.TableName = "DadosEncomenda"
@@ -71,10 +72,10 @@ Public Class Form1
 
         AddHandler ReportViewer1.LocalReport.SubreportProcessing, AddressOf ProcessarSubReport
 
-        'ReportViewer1.DataBind()
-        'ReportViewer1.LocalReport.Refresh()
-        ReportViewer1.RefreshReport()
-        Application.DoEvents()
+        ReportViewer1.DataBind()
+        ReportViewer1.LocalReport.Refresh()
+        'ReportViewer1.RefreshReport()
+        'Application.DoEvents()
         ReportViewer1.Visible = True
     End Sub
 
@@ -90,7 +91,9 @@ Public Class Form1
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        NumeroEncomenda = ComboBox1.SelectedValue
+        If Not Integer.TryParse(ComboBox1.SelectedValue, NumeroEncomenda) Then
+            NumeroEncomenda = 1
+        End If
         VerDetalhe = CheckBox1.Checked
         TextoAdicional = TextBox1.Text
         AtualizarRelatorio()
