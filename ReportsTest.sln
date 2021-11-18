@@ -9,7 +9,10 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "WebAppReportTest", "WebAppR
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B1871773-1899-4FA6-97AB-42BA305CF20D}"
 	ProjectSection(SolutionItems) = preProject
-		README.txt = README.txt
+		PostCompileCopyDB.bat = PostCompileCopyDB.bat
+		README.md = README.md
+		BaseDados\Vendas.mdf = BaseDados\Vendas.mdf
+		BaseDados\Vendas_log.ldf = BaseDados\Vendas_log.ldf
 	EndProjectSection
 EndProject
 Global

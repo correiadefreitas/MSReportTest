@@ -175,15 +175,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="BaseDados\Vendas.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="BaseDados\Vendas_log.ldf">
-      <DependentUpon>Vendas.mdf</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.8">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4.8 %28x86 and x64%29</ProductName>
@@ -196,4 +187,8 @@
     </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>cd ..\..\..\
+PostCompileCopyDB.bat</PostBuildEvent>
+  </PropertyGroup>
 </Project>

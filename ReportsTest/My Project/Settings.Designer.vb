@@ -53,12 +53,12 @@ Namespace My
                 Return defaultInstance
             End Get
         End Property
-
+        
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\BaseDados\Ven"& _ 
-            "das.mdf;Integrated Security=True")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=c:\temp\Vendas.mdf;Integrated"& _ 
+            " Security=True")>  _
         Public ReadOnly Property VendasConnectionString1() As String
             Get
                 Return CType(Me("VendasConnectionString1"),String)

@@ -1,1 +1,0 @@
-Para correr o WebAppReportTest, clicar com o bottão dto e selecionar Set as Startup Project
