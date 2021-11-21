@@ -1,2 +1,2 @@
 md c:\temp
-copy .\BaseDados\Vendas*.* c:\temp
+Robocopy .\BaseDados\ c:\temp /XO

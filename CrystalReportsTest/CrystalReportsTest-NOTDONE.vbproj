@@ -128,6 +128,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>VendasDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="VendasDataSet.vb">
+      <DependentUpon>VendasDataSet.xsd</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="CrystalReportTest.rpt">
